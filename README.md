@@ -9,6 +9,6 @@ DeepLearning Resource
 http://handong1587.github.io/deep_learning/2015/10/09/dl-resources.html#imagenet  
   
 Path-SGD   
-Path-SGD: Path-Normalized Optimization in Deep Neural Networks,Behnam Neyshabur, Ruslan Salakhutdinov, Nathan Srebro.Neural Information Processing Systems (NIPS) 28, 2015 
+Path-SGD: Path-Normalized Optimization in Deep Neural Networks,Behnam Neyshabur, Ruslan Salakhutdinov, Nathan Srebro.Neural Information Processing Systems (NIPS) 28, 2015    
 paper http://arxiv.org/abs/1506.02617   
 code http://ttic.uchicago.edu/~bneyshabur/
