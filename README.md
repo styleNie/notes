@@ -14,4 +14,7 @@ paper http://arxiv.org/abs/1506.02617
 code http://ttic.uchicago.edu/~bneyshabur/   
 
 links about DL   
-http://gitxiv.com/
+http://gitxiv.com/   
+
+使用HMM实现简单拼音输入法   
+http://sobuhu.com/ml/2013/03/07/hmm-pinyin-input-method.html
