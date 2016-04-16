@@ -16,7 +16,7 @@ code http://ttic.uchicago.edu/~bneyshabur/
 links about DL   
 http://gitxiv.com/   
 
-使用HMM实现简单拼音输入法   
+Using HMM to achieve a simple Pinyin input method   
 http://sobuhu.com/ml/2013/03/07/hmm-pinyin-input-method.html    
 
 2016-4-14   
@@ -26,4 +26,8 @@ http://arxiv.org/abs/1512.03385
 http://arxiv.org/abs/1603.03116     
 code  https://github.com/zomux/deepy/tree/master/experiments/highway_networks    
 https://github.com/alrojo/lasagne_residual_network    
-https://github.com/Avmb/lowrank-highwaynetwork
+https://github.com/Avmb/lowrank-highwaynetwork    
+
+2016-4-16
+paper  Neural Networks with Few Multiplications http://arxiv.org/abs/1510.03009
+code  https://github.com/hantek/BinaryConnect
