@@ -28,6 +28,9 @@ code  https://github.com/zomux/deepy/tree/master/experiments/highway_networks
 https://github.com/alrojo/lasagne_residual_network    
 https://github.com/Avmb/lowrank-highwaynetwork    
 
-2016-4-16
-paper  Neural Networks with Few Multiplications http://arxiv.org/abs/1510.03009
-code  https://github.com/hantek/BinaryConnect
+2016-4-16   
+paper  Neural Networks with Few Multiplications http://arxiv.org/abs/1510.03009    
+code  https://github.com/hantek/BinaryConnect   
+
+paper  SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size  http://arxiv.org/abs/1602.07360   
+code  https://github.com/DeepScale/SqueezeNet
