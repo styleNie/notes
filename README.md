@@ -39,4 +39,7 @@ A detailed introduction to the neural network
 https://mp.weixin.qq.com/s?__biz=MzA3MzE5MjM2Mw==&mid=2672246378&idx=1&sn=8c0863ea512fbcba024d4548bede6a21   
 
 A detailed introduction to face detection   
-https://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&mid=402840844&idx=1&sn=25cce8cdd0d6403943074bce18949b61&scene=1&srcid=0412gEhqheWw0hdggK665pGZ&pass_ticket=jAPclBu6ufBKD9QV9VJ00deYCG3dO5K3UJtDZGNXkFBl4C8kmklFrRWrwlHYI991#rd
+https://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&mid=402840844&idx=1&sn=25cce8cdd0d6403943074bce18949b61&scene=1&srcid=0412gEhqheWw0hdggK665pGZ&pass_ticket=jAPclBu6ufBKD9QV9VJ00deYCG3dO5K3UJtDZGNXkFBl4C8kmklFrRWrwlHYI991#rd    
+
+paper Deep Networks with Stochastic Depth  https://arxiv.org/abs/1603.09382     
+code  https://github.com/yueatsprograms/Stochastic_Depth
