@@ -43,3 +43,5 @@ https://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&mid=402840844&idx=1&sn=25cce8c
 
 paper Deep Networks with Stochastic Depth  https://arxiv.org/abs/1603.09382     
 code  https://github.com/yueatsprograms/Stochastic_Depth
+
+paper learning compact recurrent neural networks http://arxiv.org/abs/1604.02594
