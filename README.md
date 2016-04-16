@@ -33,4 +33,7 @@ paper  Neural Networks with Few Multiplications http://arxiv.org/abs/1510.03009
 code  https://github.com/hantek/BinaryConnect   
 
 paper  SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size  http://arxiv.org/abs/1602.07360   
-code  https://github.com/DeepScale/SqueezeNet
+code  https://github.com/DeepScale/SqueezeNet   
+
+A detailed introduction to the neural network    
+https://mp.weixin.qq.com/s?__biz=MzA3MzE5MjM2Mw==&mid=2672246378&idx=1&sn=8c0863ea512fbcba024d4548bede6a21
