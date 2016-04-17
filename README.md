@@ -41,8 +41,11 @@ https://mp.weixin.qq.com/s?__biz=MzA3MzE5MjM2Mw==&mid=2672246378&idx=1&sn=8c0863
 A detailed introduction to face detection   
 https://mp.weixin.qq.com/s?__biz=MzI1NTE4NTUwOQ==&mid=402840844&idx=1&sn=25cce8cdd0d6403943074bce18949b61&scene=1&srcid=0412gEhqheWw0hdggK665pGZ&pass_ticket=jAPclBu6ufBKD9QV9VJ00deYCG3dO5K3UJtDZGNXkFBl4C8kmklFrRWrwlHYI991#rd    
 
-paper Deep Networks with Stochastic Depth  https://arxiv.org/abs/1603.09382     
+paper  Deep Networks with Stochastic Depth  https://arxiv.org/abs/1603.09382     
 code  https://github.com/yueatsprograms/Stochastic_Depth   
       https://github.com/dblN/stochastic_depth_keras
 
-paper learning compact recurrent neural networks http://arxiv.org/abs/1604.02594
+paper  learning compact recurrent neural networks http://arxiv.org/abs/1604.02594  
+
+paper  Unsupervised Learning on Neural Network Outputs http://arxiv.org/abs/1506.00990   
+code  https://github.com/yaolubrain/ULNNO
