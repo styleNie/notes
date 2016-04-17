@@ -48,4 +48,6 @@ code  https://github.com/yueatsprograms/Stochastic_Depth
 paper  learning compact recurrent neural networks http://arxiv.org/abs/1604.02594  
 
 paper  Unsupervised Learning on Neural Network Outputs http://arxiv.org/abs/1506.00990   
-code  https://github.com/yaolubrain/ULNNO
+code  https://github.com/yaolubrain/ULNNO    
+
+paper  Compressing Neural Networks with the Hashing Trick  http://arxiv.org/abs/1504.04788
