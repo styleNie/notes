@@ -55,3 +55,5 @@ paper  Compressing Neural Networks with the Hashing Trick  http://arxiv.org/abs/
 paper   Deep Compression: Compressing Deep Neural Networks with Pruning, Trained Quantization and Huffman Coding  http://arxiv.org/abs/1510.00149
 
 paper  DisturbLabel: Regularizing CNN on the Loss Layer  http://research.microsoft.com/en-us/um/people/jingdw/pubs%5CCVPR16-DisturbLabel.pdf
+
+paper  universum prescription: regularization using unlabeled data  http://arxiv.org/abs/1511.03719
