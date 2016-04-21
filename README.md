@@ -56,4 +56,9 @@ paper   Deep Compression: Compressing Deep Neural Networks with Pruning, Trained
 
 paper  DisturbLabel: Regularizing CNN on the Loss Layer  http://research.microsoft.com/en-us/um/people/jingdw/pubs%5CCVPR16-DisturbLabel.pdf
 
-paper  universum prescription: regularization using unlabeled data  http://arxiv.org/abs/1511.03719
+paper  universum prescription: regularization using unlabeled data  http://arxiv.org/abs/1511.03719   
+
+paper SparkNet: Training Deep Networks in Spark http://arxiv.org/abs/1511.06051   
+code  https://github.com/amplab/SparkNet
+
+
