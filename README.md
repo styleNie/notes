@@ -61,4 +61,4 @@ paper  universum prescription: regularization using unlabeled data  http://arxiv
 paper SparkNet: Training Deep Networks in Spark http://arxiv.org/abs/1511.06051   
 code  https://github.com/amplab/SparkNet
 
-
+Links:RNN and LSTM http://handong1587.github.io/deep_learning/2015/10/09/rnn-and-lstm.html#types-of-rnn
