@@ -66,4 +66,6 @@ Links:RNN and LSTM http://handong1587.github.io/deep_learning/2015/10/09/rnn-and
 Awesome Python:A curated list of awesome Python frameworks, packages, software and resources https://python.libhunt.com/
 
 
+paper Net2Net: Accelerating Learning via Knowledge Transfer  http://arxiv.org/abs/1511.05641    
+
 paper Net2Net: Accelerating Learning via Knowledge Transfer  http://arxiv.org/abs/1511.05641
