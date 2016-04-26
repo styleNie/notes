@@ -67,3 +67,5 @@ Awesome Python:A curated list of awesome Python frameworks, packages, software a
 
 
 paper Net2Net: Accelerating Learning via Knowledge Transfer  http://arxiv.org/abs/1511.05641    
+
+paper All you need is a good init  http://arxiv.org/abs/1511.06422
