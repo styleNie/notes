@@ -72,6 +72,8 @@ paper All you need is a good init  http://arxiv.org/abs/1511.06422
 
 
 links: http://liweithu.me/    
-http://licstar.net/
+http://licstar.net/    
 
-
+paper Gated Graph Sequence Neural Networks  http://arxiv.org/abs/1511.05493v1   
+code  https://github.com/yujiali/ggnn
+  
