@@ -86,5 +86,6 @@ code  https://github.com/mdenil/acdc-torch
 paper  Importance Weighted Autoencoders  http://arxiv.org/abs/1509.00519    
 code  https://github.com/yburda/iwae    
 
+paper  Reducing Overfitting in Deep Networks by Decorrelating Representations  http://arxiv.org/abs/1511.06068   
 
 
