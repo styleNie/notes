@@ -77,3 +77,6 @@ http://licstar.net/
 paper Gated Graph Sequence Neural Networks  http://arxiv.org/abs/1511.05493v1   
 code  https://github.com/yujiali/ggnn
   
+paper Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs) http://arxiv.org/abs/1511.07289    
+code  https://github.com/iassael/torch-elu   
+
