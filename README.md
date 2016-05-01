@@ -81,4 +81,10 @@ paper Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs)
 code  https://github.com/iassael/torch-elu   
 
 paper  ACDC  A Structured Efficient Linear Layer  http://arxiv.org/abs/1511.05946    
-code  https://github.com/mdenil/acdc-torch
+code  https://github.com/mdenil/acdc-torch    
+
+paper  Importance Weighted Autoencoders  http://arxiv.org/abs/1509.00519    
+code  https://github.com/yburda/iwae    
+
+
+
