@@ -80,3 +80,5 @@ code  https://github.com/yujiali/ggnn
 paper Fast and Accurate Deep Network Learning by Exponential Linear Units (ELUs) http://arxiv.org/abs/1511.07289    
 code  https://github.com/iassael/torch-elu   
 
+paper  ACDC  A Structured Efficient Linear Layer  http://arxiv.org/abs/1511.05946    
+code  https://github.com/mdenil/acdc-torch
