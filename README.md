@@ -88,4 +88,6 @@ code  https://github.com/yburda/iwae
 
 paper  Reducing Overfitting in Deep Networks by Decorrelating Representations  http://arxiv.org/abs/1511.06068   
 
+paper  Convolutional neural networks with low-rank regularization  http://arxiv.org/abs/1511.06067    
+code  https://github.com/chengtaipu/lowrankcnn    
 
