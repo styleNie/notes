@@ -91,3 +91,5 @@ paper  Reducing Overfitting in Deep Networks by Decorrelating Representations  h
 paper  Convolutional neural networks with low-rank regularization  http://arxiv.org/abs/1511.06067    
 code  https://github.com/chengtaipu/lowrankcnn    
 
+blog Deep Language Modeling for Question Answering using Keras http://benjaminbolte.com/blog/2016/keras-language-modeling.html    
+
