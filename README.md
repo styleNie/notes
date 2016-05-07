@@ -95,3 +95,5 @@ blog Deep Language Modeling for Question Answering using Keras http://benjaminbo
 
 paper  Orthogonal RNNs and Long-Memory Tasks  http://arxiv.org/abs/1602.06662    
 
+blog  Number plate recognition with Tensorflow  http://matthewearl.github.io/2016/05/06/cnn-anpr/    
+
