@@ -93,3 +93,5 @@ code  https://github.com/chengtaipu/lowrankcnn
 
 blog Deep Language Modeling for Question Answering using Keras http://benjaminbolte.com/blog/2016/keras-language-modeling.html    
 
+paper  Orthogonal RNNs and Long-Memory Tasks  http://arxiv.org/abs/1602.06662    
+
