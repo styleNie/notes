@@ -99,3 +99,8 @@ blog  Number plate recognition with Tensorflow  http://matthewearl.github.io/201
 
 paper  Character-level Convolutional Networks for Text Classification  http://arxiv.org/abs/1509.01626    
 code  https://github.com/zhangxiangxiao/Crepe
+
+
+paper  Rank Ordered Autoencoders  https://arxiv.org/abs/1605.01749    
+code  https://github.com/paulbertens/rank-ordered-autoencoder    
+
