@@ -97,3 +97,5 @@ paper  Orthogonal RNNs and Long-Memory Tasks  http://arxiv.org/abs/1602.06662
 
 blog  Number plate recognition with Tensorflow  http://matthewearl.github.io/2016/05/06/cnn-anpr/    
 
+paper  Character-level Convolutional Networks for Text Classification     http://arxiv.org/abs/1509.01626
+code  https://github.com/zhangxiangxiao/Crepe
