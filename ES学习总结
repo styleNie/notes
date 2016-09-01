@@ -1,0 +1,23 @@
+建议在主节点上添加用户,从节点不配置任何用户,保存对外一致性
+配置为user时,无法用Spark读数据,Python可以读取
+如何提高ElasticSearch 索引速度   祝威廉
+http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f73b67848c5425938448e435061e5a24febc7075475383c37d6206f94f48afad762438547ee4da8ed31bcabae26978db67652a0b863053914aef925125b037e02cfedc13f0cbf325e0aec5d2af4322ba44717f97868b4d7462&p=cb759a46d6c916b10fbe9b7c544a8b&newp=987fe715d9c041a506f7c7710f05bb231610db2151d4d11f6b82c825d7331b001c3bbfb423231004d6c1786102ad4856e8f63376310025a3dda5c91d9fb4c57479d63d&user=baidu&fm=sc&query=elasticsearch+spark+%BD%A8%C1%A2%CB%F7%D2%FD&qid=fe31bb8f00046fd3&p1=8
+
+如何使用Spark大规模并行构建索引   九劫散仙
+http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece76310499c711923dd226d8d8b492cc3933fcf331d5c007be0b927271202d2d82c395cfa5458e9f031723d1765eadb9e871d83e8d36e74d93035005dd112528243b8cb37648373d003feaf68f0ca8625e0a4c5a2dc4320ca44040a9781fb4d7411dd19f0034595&p=8b2a9754978a16bc4ebd9b7d0d1197&newp=8c6cc216d9c11cb408e2977e0a4ac4231610db2151d4da156b82c825d7331b001c3bbfb423231005d2c67d6600ac4e5fedfb3079350425a3dda5c91d9fb4c57479d53c&user=baidu&fm=sc&query=elasticsearch+spark+%BD%A8%C1%A2%CB%F7%D2%FD&qid=fe31bb8f00046fd3&p1=5
+
+用Akka解决Spark+ElasticSearch实时计算平台的瓶颈  
+http://www.weixinla.com/document/19462619.html
+
+大数据分析界的“神兽”Apache Kylin有多牛？   
+http://www.weixinla.com/document/3345284.html
+
+二部图聚类的Spark实现及改进
+http://www.weixinla.com/document/22198783.html
+
+剖析Elasticsearch集群：存储模型和读写操作
+http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece763105392230e54f7266b8c9a4e238ac05f93130a1c187bb5e676654f538f83616707a94d59e8f7356537747af1c4969c0f80fbc4276eca7474290b8630458d4aee8d1d74d621e01bbefc59b6e0e732e2b9a2d9c82058dd23726df6869c5b7003bb18e76537f4d69e5f655807bb9d6b33e858073ee92657c243eee142797781e1aa575bb529c71265&p=cb78df16d9c11dea08e2977e0c0580&newp=882a9645d78702fc57efd43d1c4090231610db2151d4da176b82c825d7331b001c3bbfb423231005d2c67d6600ac4e5fedfb3079350425a3dda5c91d9fb4c57479cc64&user=baidu&fm=sc&query=spark+elasticsearch+%B8%F9%BE%DD%CE%C4%B5%B5id%D7%F6%B2%E9%D1%AF&qid=dfcf211e0001143b&p1=8
+
+
+http://blog.csdn.net/napoay/article/details/52201558
+
