@@ -264,7 +264,15 @@ if __name__=='__main__':
     with psycopg2.connect(database="BigData", user="postgres", password="postgres", host="10.33.27.146", port="5432") as conn:
         with conn.cursor() as cur:
             cur.execute(SQL)
-            rows = cur.fetchall()
+            rows = cur.fetchall() 
+            
+     #conn = psycopg2.connect(database="BigData", user="postgres", password="postgres", host="10.33.27.146", port="5432")
+     #cur = conn.cursor()
+     #cur.execute("select \"PASS_ID\",\"CROSSING_ID\",\"PLATE_NO\",\"PASS_TIME\"  from \"TRAFFIC_VEHICLE_PASS1407\" limit 10 ")
+     #d=cur.__iter__()
+     #for line in d:
+     #    print(line)
+
 
     docs = []
     i=0
