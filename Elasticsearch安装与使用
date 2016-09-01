@@ -1,0 +1,410 @@
+Elasticsearch安装与使用
+一、	环境准备
+1.	先安装java1.7及以上版本
+2.	到elasticsearch官网下载elasticsearch解压放到本地任一目录下,如E:\package\elasticsearch-2.3.4
+官网:https://www.elastic.co/downloads/elasticsearch
+
+二、单机版运行
+1.进入elasticsearch的bin目录,运行elasticsearch.bat文件(linux下运行elasticsearch),出现started,运行成功；在浏览器中输入localhost:9200，会返回true.
+2.head插件安装：命令行切换到elasticsearch的bin目录下,输入plugin install head,安装完毕后在浏览器中输入localhost: 9200/_plugin/head/,出现如下界面
+ 
+插件安装成功
+
+三、分布式安装
+1.集群安装
+以3台机器为例，3台机器ip分别为10.17.131.119,10.17.131.105,10.33.27.146
+选定10.17.131.119作为主机.
+进入elasticsearch的config文件夹,打开elasticsearch.yml文件,在里面添加如下信息:
+
+主节点上:
+cluster.name: es
+node.name: "node1"
+#内网IP
+network.host: 10.17.131.119
+# 是否设为主节点
+node.master: true
+# 数据是否存放在本机
+node.data: true
+#关闭多播节点
+discovery.zen.ping.multicast.enabled: false  
+#所有单播可用节点  
+discovery.zen.ping.unicast.hosts:10.17.131.119:9300,10.17.131.105:9300,10.33.27.146:9300
+# 为节点之间的通信设置一个自定义端口(默认为9300)
+transport.tcp.port: 9300
+# 设置监听HTTP传输的自定义端(默认为9200)
+http.port: 9200
+
+从节点1:
+network.host: 10.17.131.105
+# 配置集群名称
+cluster.name: es
+# 配置节点名称
+node.name: "node3"
+node.master: false
+node.data: true
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts:10.17.131.119:9300,10.17.131.105:9300,10.33.27.146:9300
+# 为节点之间的通信设置一个自定义端口(默认为9300)
+transport.tcp.port: 9301
+# 设置监听HTTP传输的自定义端(默认为9200)
+http.port: 9201
+
+从节点2:
+network.host: 10.33.27.146
+# 配置集群名称
+cluster.name: es
+# 配置节点名称
+node.name: "node3"
+node.master: false
+node.data: true
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts:10.17.131.119:9300,10.17.131.105:9300,10.33.27.146:9300
+# 为节点之间的通信设置一个自定义端口(默认为9300)
+transport.tcp.port: 9302
+# 设置监听HTTP传输的自定义端(默认为9200)
+http.port: 9202
+
+启动elasticsearch即可(在3个节点的elasticsearch的bin目录分布运行elasticsearch.bat文件),在浏览器中输入10.17.131.119:9200/_plugin/head/可查看集群信息(head插件可以只在主节点安装)。
+
+2.参数解释
+cluster.name 
+指定了集群的名字,是节点间能相互感知的重要参数,不同的集群应配置不同的名字,以免混淆
+network.host
+指定本机ip地址
+node.name
+配置本机的名字作为节点名
+node.master
+指定本机是否作为集群的master节点
+node.data
+指定集群中的索引数据是否存放于本机
+discovery.zen.ping.multicast.enabled
+是否允许多播,windows上配置为false,linux下查看机器是否支持多播,视具体情况做配置
+discovery.zen.ping.unicast.hosts
+指定集群中单播节点的ip地址与端口号
+transport.tcp.port
+指定节点间通信的端口号,不同节点端口号不同
+http.port
+监听HTTP传输的端口
+
+更多参数设置请参考
+https://www.elastic.co/guide/en/elasticsearch/hadoop/current/configuration.html
+
+四、添加http验证功能
+集群安装好后,若直接暴露ip地址给外部访问,风险极大,因此需设置不同的用户访问权限,采用官方提供的shield插件(shield免费试用一个月,然后需付费使用,消息待证实,另一开源插件elasticsearch-http-basic已不再支持) 。
+按照shield官网(https://www.elastic.co/downloads/shield)提供的说明安装:
+1.	命令行进入elasticsearch的bin目录,先后运行plugin install license;plugin install shield即安装成功(主节点和从节点都需要安装)
+2.	运行elasticsearch.bat
+3.	命令行进入bin/shield目录,执行以下命令添加用户:
+esusers useradd userName -r admin
+adminName是用户名,admin是指定用户为管理员(最高权限)
+执行上述命令后会要求输入两次密码
+在浏览器中输入10.17.131.119:9200/_plugin/head/会要求输入登录用户名和密码
+4.	esusers userdel username 删除用户
+5.	esusers list   列出当前集群的所有用户
+6.	用户角色分为admin、power_user、user、events_user
+更多shield的使用见
+https://www.elastic.co/guide/en/shield/current/getting-started.html
+
+五、Python中操作elasticsearch
+Python与elasticsearch的交互方式有两种,一种是elasticsearch提供的elasticsearch包(http://elasticsearch-py.readthedocs.io/en/master/),另一种是pyelasticsearch包(http://pyelasticsearch.readthedocs.io/en/latest/),两种都可直接用pip安装。前一种较粗糙,不建议使用,这里采用pyelasticsearch包。
+Pyelasticsearch的基本操作:
+#!/usr/bin/python
+# coding:utf-8
+
+__author__ = 'nieguoping'
+
+import pyelasticsearch
+from elasticsearch import *
+# url:10.17.131.119
+# port:9200
+# index: test
+# type: vechicleRecord_node_1408
+# source: pass_id
+#         crossing_id
+#         plate_no
+#         pass_time
+
+es=pyelasticsearch.ElasticSearch(urls='http://10.17.131.119', timeout=60, port='9200', username='es_admin', password='bigdata')  #  连接到es集群
+
+# stats = es.status(index='test')
+# print(stats)
+
+# 获取指定id的文档,返回结果为字典类型
+re=es.get(index='test', doc_type='vechicleRecord_node_1408', id=75534358)
+#打印文档信息
+# print(re["_id"])
+# print(re["_index"])
+# print(re["_source"]["pass_id"])
+# print(re["_source"]["crossing_id"])
+# print(re["_source"]["plate_no"])
+# print(re["_source"]["pass_time"])
+# print(re["_type"])
+# print(re["_version"])
+# print(re["found"])
+
+es.cluster_state(index='test')   #获取索引状态信息
+# es.delete_index(index='test')    #删除索引
+
+setting={
+"mappings" : {
+"person" : {
+"dynamic" : "false",
+"properties" : {
+"id":{"type":"long", "store":"yes"},
+"age" : { "type" : "string", "store": "yes" },
+"title" : { "type" : "string", "store": "yes" },
+"name" : { "type" : "string", "store": "yes"}
+}  }}}
+# "PASS_TIME":{"type":"date", "format": "YYYY-mm-dd HH:mm:ss", "store": "yes" }
+
+# es.create_index(index='contacts', settings=setting)  #根据映射建立新索引
+
+# 索引单个文档到es中,doc为json格式文档
+# es.index(index='contacts', doc_type='person', doc={"age": 32,"title": "Programmer","name": "Tom"}, id="5")
+
+# docs = [{'id': 8, 'name': 'Json', 'age': 30, 'title': 'Teacher'},
+#          {'id': 9, 'name': 'Link', 'age': 29, 'title': 'Student'}]
+#批量索引文档,方法一
+# es.bulk((es.index_op(doc, id=doc.pop('id')) for doc in docs), index='contacts',doc_type='person')
+#
+#批量索引文档,方法二
+# es.bulk_index(index='contacts', doc_type='person', docs=docs)
+
+# 搜索数据,返回结果为字典类型
+# search_re=es.search('name:Tom OR name:Link')  #搜索name字段中含 Tom或者Link的所有文档
+#
+# hits=search_re['hits']
+# doc=hits['hits']
+# print(doc[0]['_id'])
+# print(doc[0]['_index'])
+# print(doc[0]['_type'])
+# print(doc[0]['_source']['age'])
+# print(doc[0]['_source']['name'])
+# print(doc[0]['_source']['title'])
+
+
+query = {
+ 'query': {
+     'filtered': {
+           'query': {
+                 'query_string': {'query': 'name:tester'}
+            },
+             'filter': {
+                 'range': {
+                    'age': {
+                         'from': 27,
+                         'to': 37,
+                     },
+                 },
+            },
+         },
+     },
+ }
+
+# r=es.search(query, index='contacts')   #根据提供的查询语句,搜索name字段中含tester且age在27到37之间的所有文档
+# data=r['hits']['hits'][0]['_source']
+# for key, value in data.items():
+#     print key, ':', value
+
+#返回命中的记录条数
+# r2=es.count(query)
+# print(r2['count'])
+
+# print(es.health())  #返回集群健康度信息
+
+#print(es.get_mapping(index='contacts'))   #获取contacts索引的映射信息
+将pg数据库中的数据迁移到elasticsearch中,python操作pg数据库使用的是psycopg2包，详细教程见官方文档。
+
+#!/usr/bin/python
+# coding:utf-8
+
+__author__ = 'nieguoping'
+
+import pyelasticsearch
+import psycopg2
+from time import *
+
+if __name__=='__main__':
+    es = pyelasticsearch.ElasticSearch(urls='http://10.17.131.119', timeout=60, port='9200')  #  连接到es集群
+    setting={
+  "mappings": {
+    "vechicleRecord": {
+      "dynamic": "false",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "store": "yes"
+        },
+        "PASS_ID": {
+          "type": "integer",
+          "store": "yes"
+        },
+        "CROSSING_ID": {
+          "type": "integer",
+          "store": "yes"
+        },
+        "PLATE_NO": {
+          "type": "string",
+          "store": "yes"
+        },
+        "PASS_TIME": {
+          "type": "date",
+          "format": "YYYY-mm-dd HH:mm:ss",
+          "store": "yes"
+        }
+      }
+    }
+  }
+}
+    es.delete_index(index='test')
+    es.create_index(index='test', settings=setting)  #建立索引
+
+    start = time()
+    SQL = "select \"PASS_ID\",\"CROSSING_ID\",\"PLATE_NO\" ,\"PASS_TIME\" from \"TRAFFIC_VEHICLE_PASS1407\" "
+    with psycopg2.connect(database="BigData", user="postgres", password="postgres", host="10.33.27.146", port="5432") as conn:
+        with conn.cursor() as cur:
+            cur.execute(SQL)
+            rows = cur.fetchall()
+
+    docs = []
+    i=0
+    for line  in rows:
+        i=i+1
+        tmp = {}
+        tmp["id"] = int(line[0])
+        tmp["PASS_ID"] = int(line[0])
+        tmp["CROSSING_ID"] = int(line[1])
+        tmp["PLATE_NO"] = line[2]
+        tmp["PASS_TIME"] =str(line[3])
+        docs.append(tmp)
+
+        if i%10000 ==0 or i==len(rows):
+            es.bulk_index(index='test', doc_type='vechicleRecord', docs=docs)
+            docs=[]
+            
+    end = time()
+    print("all record number : %d" %(i))
+    print("Time cost : %f" %(end-start))
+
+Python迁移的方式是先将pg中的数据读取到内存中,然后再写入elasticsearch,写入时是单线程操作,速度较慢(尝试多线程没成功)。Pg数据库中100万(大约100M,每条记录4字段)数据迁移耗时120s左右,1000万数据耗时1150s左右,大于2000万时内存限制,无法写入(运行6小时没反应,直接关闭程序了)。
+
+六、Spark中操作elasticsearch
+Spark操作elasticsearch依赖elasticsearch-spark包(elasticsearch-hadoop包也可以,没有用过)。
+还是以pg数据迁移到elasticsearch为例,数据和第五部分的相同。
+
+import org.apache.spark.rdd.JdbcRDD
+import java.sql.DriverManager
+import org.elasticsearch.spark._
+import org.apache.spark.SparkConf
+import org.apache.spark.SparkContext
+
+/**
+  * Created by nieguoping on 2016/8/4.
+  */
+object Tryout {
+  def main(args: Array[String]) {
+    val conf = new SparkConf().setAppName("Tryout").setMaster("local[8]")
+    //添加elasticsearch集群的配置信息,建议以后面的esOptions方式传入
+//    conf.set("es.index.auto.create", "true")
+//    conf.set("es.resource", "contacts/people")
+//    conf.set("es.resource.read","test/vechicleRecord")
+    //conf.set("es.resource.write","spark/docs")
+//    conf.set("es.nodes","10.33.27.146")  // 10.33.27.146  : 9202   10.17.131.119
+//    conf.set("es.port","9202")
+//    conf.set("spark.driver.allowMultipleContexts", "true")
+//    conf.set("es.scroll.size","10000")             // 指定读数据时每次读取的数目
+//    conf.set("es.batch.size.entries","10000")      // 指定写数据时每次写入的数目
+//    conf.set("es.field.read.as.array.include","SampleField")
+//    conf.set("es.mapping.id", "pass_id")       // 指定映射id使用的字段
+
+    val sc = new SparkContext(conf)
+
+    case class vechicle(pass_id: Int, plate_no: String, crossing_id: Int, pass_time:String)
+    val start = System.currentTimeMillis()
+    val esOptions = Map("es.nodes"->"http://10.17.131.119:9200", "es.scroll.size"->"10000",
+      "es.field.read.as.array.include"-> "SampleField", "es.index.auto.create"->"true",
+      "spark.driver.allowMultipleContexts"->"true", "es.batch.size.entries"->"10000",
+      "es.mapping.id"->"pass_id","es.net.http.auth.user"->"liu","es.net.http.auth.pass"->"liu12345")
+    // 写数据
+    val record = new JdbcRDD(
+      sc,
+      () => {
+        classOf[org.postgresql.Driver].newInstance()
+        DriverManager.getConnection("jdbc:postgresql://10.33.27.146:5432/BigData", "postgres", "postgres")
+      },
+      "select \"PASS_ID\",\"PLATE_NO\", \"CROSSING_ID\",\"PASS_TIME\" from \"TRAFFIC_VEHICLE_PASS1408\" " +
+        "where \"PASS_ID\">=? AND \"PASS_ID\"<=? and \"CROSSING_ID\" is not null and \"PASS_TIME\" is not null ",
+      64054010,104518441,108 ,  //55562975,95276643, 96,
+      r => ((r.getInt("PASS_ID"),r.getString("PLATE_NO"),r.getInt("CROSSING_ID"), r.getString("PASS_TIME")))
+    ).map(p => vechicle(p._1, p._2, p._3,p._4)).repartition(108).saveToEs("test/vechicleRecord_node_1408",esOptions)
+
+    val end = System.currentTimeMillis()
+    println("************ cost time "+(end-start)/1000)
+
+     //读整个索引的数据,读取出来的数据是map 形式
+    val people = sc.esRDD("test/vechicleRecord_node_1408",esOptions)
+    people.map(x=>x._2.values).foreach(println)
+    println("******* "+people.count())
+
+    // 根据查询语句读取数据
+    // 查询所有数据
+    val all_query = "{\n\"query\" : {\n\"match_all\" : {}\n}\n}"
+    //根据文档id查询
+    val id_query = "{\n\"query\": {\n\"ids\": {\n\"type\": \"vechicleRecord_node_1408\"," +
+      "\n\"values\": [\n\"64982845\",\n\"64079905\"\n]\n}\n}\n}"
+    val re = sc.esRDD("test/vechicleRecord_node_1408",query = id_query ,cfg = esOptions)
+      .map(record=>record._2.map(_._2)).foreach(println)
+
+    sc.stop()
+  }
+}
+
+pom文件配置如下
+<properties>
+    <spark.version>1.5.2</spark.version>
+    <scala.binary.version>2.10</scala.binary.version>
+</properties>
+<dependencies>
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-core_${scala.binary.version}</artifactId>
+    <version>${spark.version}</version>
+</dependency>
+    <!--<dependency>-->
+        <!--<groupId>org.elasticsearch</groupId>-->
+        <!--<artifactId>elasticsearch-hadoop</artifactId>-->
+        <!--<version>2.1.0.Beta2</version>-->
+    <!--</dependency>-->
+    <dependency>
+        <groupId>org.elasticsearch</groupId>
+        <artifactId>elasticsearch-spark_2.10</artifactId>
+        <version>2.3.2</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-sql_2.10</artifactId>
+        <version>1.5.2</version>
+    </dependency>
+    <!--<dependency>-->
+        <!--<groupId>com.oracle</groupId>-->
+        <!--<artifactId>ojdbc</artifactId>-->
+        <!--<version>11.1.0.7.0</version>-->
+    <!--</dependency>-->
+    <dependency>
+        <groupId>postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>9.1-901.jdbc4</version>
+    </dependency>
+    <!--<dependency>-->
+        <!--<groupId>fr.zebasto</groupId>-->
+        <!--<artifactId>shield-cas-realm</artifactId>-->
+        <!--<version>2.3.4</version>-->
+        <!--<type>zip</type>-->
+    <!--</dependency>-->
+</dependencies>
+
+迁移7月份8880276条记录耗时746s,迁移8月份35031448条记录耗时4222s,比Python快一倍左右,且受益于spark的RDD特性,可以操作的数据量达到5000万以上。
+
+七、进一步探索方向
+1.spark中如何根据海量文档id做查询,返回数据,现有的写DSL语句做查询时,传入的id较少,不满足大数据场景(如统计抽样)；
+2.
