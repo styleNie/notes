@@ -105,3 +105,5 @@ code  https://github.com/zhangxiangxiao/Crepe
 paper  Rank Ordered Autoencoders  https://arxiv.org/abs/1605.01749    
 code  https://github.com/paulbertens/rank-ordered-autoencoder    
 
+blog:http://www.cnblogs.com/Petrichor/   
+
