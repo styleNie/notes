@@ -1,0 +1,27 @@
+1.杀掉nohup的后台进程
+ps -ef | grep command
+kill -9 pid
+
+2.SHELL循环遍历两个日期作为参数执行命令
+#! /bin/sh
+date=`date -d "+0 day $1" +%Y-%m-%d`
+enddate=`date -d "+1 day $2" +%Y-%m-%d`
+
+echo "------------------------------"
+echo "date=$date"
+echo "enddate=$enddate"
+echo "------------------------------"
+
+while [[ $date < $enddate  ]]
+do
+	echo $date
+	date=`date -d "+1 day $date" +%Y-%m-%d`
+done
+
+
+3. shell定时任务
+
+
+4.公司hdfs目录
+
+hadoop fs -ls -h hdfs://ns9/user/recsys/app.db/app_flow_yunying_cid_brand_mod
