@@ -1,0 +1,59 @@
+1.hive从本地txt导入数据
+load data local inpath '/data0/nieguoping/tmp/cuoci.txt'  into table tmp_kwd
+
+create table if not exists tmp_shop(word string,num bigint) row format delimited fields terminated by '\t'
+
+
+2. 修改表
+alter table app_app_pc_wq_jiucuo_result drop if  exists partition(dt='2017-08-05');
+
+3. exists与semi join
+presto中运行
+select count(*) from app.app_search_suggest_processed_exposure_sz_filter 
+where dt='2017-08-06' and abtestid = 'app' and requestquery in (select word from tmp_shop_orc) 
+or split(suggest_words,'#')[1] in (select word from tmp_shop_orc)
+
+hive中运行
+select count(1) from
+(
+select a.* from
+(select *
+from app.app_search_suggest_processed_exposure_sz_filter 
+where dt='2017-08-06' and abtestid = 'app')a 
+left semi join tmp_shop_orc b
+on a.requestquery=b.word
+union
+select a1.* from
+(select *
+from app.app_search_suggest_processed_exposure_sz_filter 
+where dt='2017-08-06' and abtestid = 'app')a1 
+left semi join tmp_shop_orc b1
+on split(a1.suggest_words,'#')[0]=b1.word
+)as c;
+
+EXISTS与IN的使用效率的问题，通常情况下采用exists要比in效率高，因为IN不走索引，但要看实际情况具体使用：
+IN适合于外表大而内表小的情况；EXISTS适合于外表小而内表大的情况
+
+
+4.grouping__id
+hive上的grouping__id是两个下划线，spark中一个下划线
+
+
+5.索引
+create index brandname_index on table app.app_res_search_flow_yunying_kwd_brand(brandname_cn) 
+as 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler' with deferred rebuild;
+
+alter index brandname_index on app.app_res_search_flow_yunying_kwd_brand rebuild;
+
+删除索引
+DROP INDEX brandname_index on app.app_res_search_flow_yunying_kwd_brand;
+
+查看索引
+show index on app.app_res_search_flow_yunying_kwd_brand
+
+
+6.mysql建索引
+alter table test add index(t_name);
+
+7.spark杀掉任务
+yarn application -kill appid  //appid不需要引号
